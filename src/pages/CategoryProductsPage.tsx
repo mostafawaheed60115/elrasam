@@ -9,7 +9,7 @@ export default function CategoryProductsPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [loaded, setLoaded] = useState(false);
-  const { t, lang } = useLang();
+  const { t } = useLang();
 
   useEffect(() => {
     async function fetchData() {

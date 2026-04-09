@@ -9,7 +9,7 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState<any>(null);
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string>('');
-  const { t, lang } = useLang();
+  const { t } = useLang();
 
   useEffect(() => {
     async function fetchProduct() {
