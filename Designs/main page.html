@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Connecto - Explore Categories</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#abb3b7",
+                    "on-tertiary-fixed": "#000c1c",
+                    "primary-container": "#e5e2e1",
+                    "on-secondary": "#faf8ff",
+                    "inverse-on-surface": "#9b9d9e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#e5e2e1",
+                    "error": "#9f403d",
+                    "surface-tint": "#5f5e5e",
+                    "inverse-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#595a6b",
+                    "surface-container-low": "#f1f4f6",
+                    "on-secondary-container": "#4f5161",
+                    "tertiary": "#0062a5",
+                    "error-container": "#fe8983",
+                    "surface-container-highest": "#dbe4e7",
+                    "surface": "#f8f9fa",
+                    "on-surface": "#2b3437",
+                    "secondary-fixed-dim": "#d2d3e7",
+                    "tertiary-dim": "#005691",
+                    "on-error-container": "#752121",
+                    "on-surface-variant": "#586064",
+                    "surface-container": "#eaeff1",
+                    "tertiary-fixed": "#60adfd",
+                    "inverse-surface": "#0c0f10",
+                    "on-primary-fixed": "#403f3f",
+                    "error-dim": "#4e0309",
+                    "surface-dim": "#d1dce0",
+                    "secondary": "#5c5e6f",
+                    "on-primary-container": "#525151",
+                    "tertiary-container": "#60adfd",
+                    "on-tertiary": "#f7f9ff",
+                    "outline": "#737c7f",
+                    "secondary-dim": "#505262",
+                    "primary": "#5f5e5e",
+                    "on-error": "#fff7f6",
+                    "on-tertiary-fixed-variant": "#00355c",
+                    "on-background": "#2b3437",
+                    "on-secondary-fixed": "#3c3e4e",
+                    "secondary-container": "#e0e1f5",
+                    "background": "#f8f9fa",
+                    "surface-container-high": "#e2e9ec",
+                    "on-primary": "#faf7f6",
+                    "on-primary-fixed-variant": "#5c5b5b",
+                    "primary-fixed-dim": "#d6d4d3",
+                    "tertiary-fixed-dim": "#509fee",
+                    "on-tertiary-container": "#002b4e",
+                    "secondary-fixed": "#e0e1f5",
+                    "primary-dim": "#535252",
+                    "surface-variant": "#dbe4e7",
+                    "surface-bright": "#f8f9fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+<nav class="flex justify-between items-center h-16 px-6 md:px-12 w-full max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<a class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50" href="#">Connecto</a>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-900 dark:text-slate-50 font-semibold border-b-2 border-slate-900 dark:border-slate-50 pb-1 font-sans antialiased text-sm tracking-tight" href="#">Categories</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-on-surface-variant/60 w-64" placeholder="Search curated collections..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-200 rounded-full">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-50" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-200 rounded-full">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-50" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Editorial Header Section -->
+<section class="mb-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<span class="text-xs font-bold tracking-[0.2em] uppercase text-primary mb-4 block">The Collections</span>
+<h1 class="text-5xl md:text-7xl font-bold tracking-tighter text-[#1A202C] mb-6">Explore the curated architect's vision.</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed font-body max-w-lg">
+                        Select a category to browse through our architecturally inspired catalog of premium products, designed for the modern living space.
+                    </p>
+</div>
+<div class="flex items-center gap-4 pb-2">
+<span class="text-sm font-medium text-on-surface-variant">Filter by:</span>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-medium">All</button>
+<button class="px-4 py-2 bg-surface-container text-on-surface rounded-lg text-sm font-medium hover:bg-surface-container-high transition-colors">Residential</button>
+<button class="px-4 py-2 bg-surface-container text-on-surface rounded-lg text-sm font-medium hover:bg-surface-container-high transition-colors">Commercial</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout for Categories -->
+<section class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6">
+<!-- Category 1: Minimalist Furniture (Large Feature) -->
+<a class="group relative md:col-span-2 md:row-span-2 overflow-hidden rounded-xl bg-surface-container-lowest transition-all duration-300" href="/products">
+<div class="aspect-[4/5] md:aspect-auto md:h-full w-full overflow-hidden">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="minimalist modern living room with a sculptural concrete coffee table and high-end fabric sofa in soft neutral tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszIAvF33Ai7MeS8u7o4GLZRbzR48-mAeFC4AMUrXRbMcFm6b4ZtDmVgn1ACKdYhEb6MUeVTmjYlYTkhuzxQTnRjloX2pSPTAuvCpEGwLy_fJEczmZts6yFErp9jDGabPOEhxuXs8ANiWIET8K8lc8EF4zdHUpjdwoXKrcM2lq21FdH2Omlqe82fjUlz1ghFDjhFFCbItrjeIQJqDFYb7W9KEzqklD07MYulOzj5Nw6rKzSkI6py36u4eXGnQW_1BZkX2-UB0Q"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex justify-between items-end">
+<div>
+<span class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/80 mb-1 block">Interior Design</span>
+<h2 class="text-3xl font-bold tracking-tight text-white">Living Spaces</h2>
+</div>
+<span class="material-symbols-outlined text-white text-3xl">arrow_outward</span>
+</div>
+</div>
+<div class="absolute inset-0 border-4 border-transparent group-hover:bg-[#F3F4F6]/10 transition-colors pointer-events-none"></div>
+</a>
+<!-- Category 2: Smart Lighting -->
+<a class="group relative md:col-span-2 overflow-hidden rounded-xl bg-surface-container-lowest transition-all duration-300" href="/products">
+<div class="aspect-video w-full overflow-hidden">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="close-up of sleek matte black pendant lights hanging over a modern kitchen island with warm diffused lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWunN_aflECPeHKL6PHeOO4OfxMufs-8O_mx5fWGZqPpznMzwbIYnG6hLW7JxrSoK46HmfRasGT6YpOu3hP1uk1cpGYVdrFGx_TaQ_uAmXBxrpH0TBJV-OTwxSWHxkT59-y5VHREUdZnKpkUl7u1QzNs8jLWd44QslyGLk_o7szNReAkm4htdY0uzTbqiqd4k09WBsZssGL4OWbzjViyOEyAhShzr7g_sFGd7bUKap-VEMLK5VxJm3kyFPBRgAVMcmyHd0u2U6"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex justify-between items-end translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<div>
+<span class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/80 mb-1 block">Luminaires</span>
+<h2 class="text-2xl font-bold tracking-tight text-white">Atmospheric Lighting</h2>
+</div>
+<span class="material-symbols-outlined text-white">arrow_forward</span>
+</div>
+</div>
+<div class="absolute inset-0 border-4 border-transparent group-hover:bg-[#F3F4F6]/10 transition-colors pointer-events-none"></div>
+</a>
+<!-- Category 3: Textiles -->
+<a class="group relative overflow-hidden rounded-xl bg-surface-container-lowest transition-all duration-300" href="/products">
+<div class="aspect-square w-full overflow-hidden">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="textured bouclé and linen pillows in cream and charcoal colors layered on an architectural daybed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARZ12wRFTjrU1aPhDamAK3eedTnbev9XyMBJXiGzr2mLM4u7arz9jLAxtzU1F5hYDcXH8ysiKzWI-1q5mSblj703knsAZVLmsUevXufeHrBWYTmc7z-AYnOiQKdFVfrBJ5RIW7OSd31G2s4o9qZqvSvcjjgQjwnUP1_f9efMrmJ_P_zxxuOqPoP4XQbz9fAsW-_H8uXCQPYZw4FYlDuhDQyYRQ-m9_65-JbpaZVudhMY3-o6te5g7suFaejwxE_Tdyer_pAZ9v"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex justify-between items-end translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<div>
+<h2 class="text-xl font-bold tracking-tight text-white">Soft Goods</h2>
+</div>
+<span class="material-symbols-outlined text-white text-xl">east</span>
+</div>
+</div>
+<div class="absolute inset-0 border-4 border-transparent group-hover:bg-[#F3F4F6]/10 transition-colors pointer-events-none"></div>
+</a>
+<!-- Category 4: Kitchenware -->
+<a class="group relative overflow-hidden rounded-xl bg-surface-container-lowest transition-all duration-300" href="/products">
+<div class="aspect-square w-full overflow-hidden">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="minimalist matte ceramics and architectural espresso machine on a white stone countertop with morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9udVaMFiANgAkKD_wT9Ia1yVwfyF61j5p0n0SLjgBeoi4JM-OTBJ0z1SPoItzRmH-X5TjdoDaTf3KcZmDITFNAoHn8fyydCQTebKVF-2p8hcVYSS6keHZDW132nA5qvCEDP42BQ5h3C0Fa4RyGswOyuTM-ys-FrshCTcYxK3VNATD-3xbgCLdn1gYUp-KUUzfZF-onlW6_BBp4MUJwjVdRl7eRfXIt3_mDEx5EaF-KKOkBy4t0dq2K0ezV9TgKrbHMrvbJk4F"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex justify-between items-end translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<div>
+<h2 class="text-xl font-bold tracking-tight text-white">Culinary</h2>
+</div>
+<span class="material-symbols-outlined text-white text-xl">east</span>
+</div>
+</div>
+<div class="absolute inset-0 border-4 border-transparent group-hover:bg-[#F3F4F6]/10 transition-colors pointer-events-none"></div>
+</a>
+</section>
+<!-- Secondary Grid: More Categories -->
+<section class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Outdoor Collection -->
+<a class="group bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-black/5" href="/products">
+<div class="aspect-video mb-6 rounded-lg overflow-hidden bg-surface-container-low">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="modern outdoor patio with clean-lined cedar furniture and sculptural planters overlooking a coastal view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwux-L10L1UjorJoLWIw0FTLD_wRvTOnVN7p0YRffpugcCWmU5-ZVSb8ZT3Gh42MY_KmtYPLDM4t17Q9z42lErAGNauYwN_7BWEah6PMWMzPIJZm78L4D8KQt0ZuN0rrgXvd1o_l1Sh71Q-z7ReREnlEmJryVkpJXumRIGuSLgThNiKR1LJwr-DYLaX7xJWiP9UbJN2OdE64j3F35tVA9q6aqpwsv2NwWnGGGLvF-_rdsym5d65mlWiGvwpG2zA023AOhrG3x_"/>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-2xl font-bold text-[#1A202C] tracking-tight">Exterior Focus</h3>
+<span class="text-primary text-xs font-bold bg-primary-container px-2 py-1 rounded">New</span>
+</div>
+<p class="text-sm text-on-surface-variant font-body">Sustainable materials designed for the elements, blending nature with architectural form.</p>
+</div>
+</a>
+<!-- Workspace Collection -->
+<a class="group bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-black/5" href="/products">
+<div class="aspect-video mb-6 rounded-lg overflow-hidden bg-surface-container-low">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="sleek home office with a floating oak desk, ergonomic black chair and minimalist wall shelving with books" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA28DSg9Lct1o-xREiFNYNE3trc5835llR3hUJIlf78IhodmGz1mik29e3E788ibY6BMOM1jY_w6rSQPIR8yBEIS6yV9_BtEdFG8-ZbvG6C1ztQ7grbvqSe0exd18T0T7t9lX9Hqk3_M49iI0djQ46dCQ6DYF0A-OCCcuXP2QOPFowv6s1TOLUqd8S7y-m9swBKm-yJr32Y8c42zo3RY4aPlXLG58aFI0KiZ24ePhCH9YM4_5TPAMl6BJbJTX6hjeD-zv3TSK_H"/>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-2xl font-bold text-[#1A202C] tracking-tight">Workspace</h3>
+</div>
+<p class="text-sm text-on-surface-variant font-body">Refined tools for thought. Elevate your productivity through intentional environment design.</p>
+</div>
+</a>
+<!-- Art & Objects -->
+<a class="group bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-black/5" href="/products">
+<div class="aspect-video mb-6 rounded-lg overflow-hidden bg-surface-container-low">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="abstract ceramic sculptures and geometric art pieces displayed on an minimalist floating shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHYqGGedIIiK-BUBtDktNZPrnNKQfq733DnXGdgJfcNXBjUDsXgsCVfnIKOQsM7KG1YdnEHsgvAKhIXI5gluE5aXnBPx1hvFcrgUl7Xyx7tFWoCntX48bfbdJ--1yBDh1fJXOnzpEk-xJwlCM7GwFYe61rY3BA6FGAq0pTyphMeVDZbS8x1LIYKwPE5OMJkmZwOb0F-9oeNxWxQuT9NpZ0oyYhjGirsuy9cEFOnHvmlSHiHDQPtVBga4cUmc8P6gO2u0S3ZWCg"/>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-2xl font-bold text-[#1A202C] tracking-tight">Art &amp; Objects</h3>
+</div>
+<p class="text-sm text-on-surface-variant font-body">Small details that define the soul of a space. Handcrafted artifacts for the discerning eye.</p>
+</div>
+</a>
+</section>
+<!-- Newsletter / CTA section -->
+<section class="mt-32 relative overflow-hidden rounded-3xl bg-primary py-20 px-8 text-center text-on-primary">
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="text-4xl font-bold tracking-tighter mb-4">Join the Collective.</h2>
+<p class="text-on-primary/80 mb-8 font-body">Receive exclusive early access to our seasonal architectural drops and design insights.</p>
+<div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+<input class="flex-grow rounded-lg bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:ring-on-primary focus:border-on-primary" placeholder="Your architectural digest email" type="email"/>
+<button class="bg-on-primary text-primary px-8 py-3 rounded-lg font-bold hover:bg-white transition-colors">Subscribe</button>
+</div>
+</div>
+<!-- Abstract background shape -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col items-center justify-center gap-4 text-center px-8">
+<div class="text-sm font-bold text-slate-900 dark:text-slate-50">Connecto</div>
+<nav class="flex gap-8">
+<a class="text-xs font-normal tracking-wide uppercase text-slate-500 dark:text-slate-400 hover:underline transition-all focus:ring-2 focus:ring-slate-400" href="#">Privacy Policy</a>
+<a class="text-xs font-normal tracking-wide uppercase text-slate-500 dark:text-slate-400 hover:underline transition-all focus:ring-2 focus:ring-slate-400" href="#">Terms of Service</a>
+<a class="text-xs font-normal tracking-wide uppercase text-slate-500 dark:text-slate-400 hover:underline transition-all focus:ring-2 focus:ring-slate-400" href="#">Contact Us</a>
+</nav>
+<p class="text-xs font-normal tracking-wide uppercase text-slate-500 dark:text-slate-400 mt-4">Provided by Connecto Team, all rights reserved</p>
+</div>
+</footer>
+</body></html>

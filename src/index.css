@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body bg-background text-on-background;
+    overflow-x: hidden;
+  }
+
+  /* Premium selection color */
+  ::selection {
+    background: rgba(196, 151, 58, 0.25);
+    color: #1B2A4A;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(27, 42, 74, 0.2);
+    border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(27, 42, 74, 0.4);
+  }
+}
+
+/* Material Icons */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* =================== UTILITY CLASSES =================== */
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.glass-dark {
+  background: rgba(27, 42, 74, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.glass-nav {
+  background: rgba(253, 251, 247, 0.85);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+}
+
+/* Ghost Border */
+.ghost-border {
+  box-shadow: 0 0 0 1px rgba(212, 204, 195, 0.25);
+}
+
+.ghost-border-gold {
+  box-shadow: 0 0 0 1px rgba(196, 151, 58, 0.2);
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(90deg, #F5F0EA 25%, #FFF3D6 50%, #F5F0EA 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* Gold accent line */
+.gold-accent {
+  position: relative;
+}
+.gold-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #C4973A, #F5E4B0);
+  border-radius: 100px;
+}
+
+[dir="rtl"] .gold-accent::after {
+  left: auto;
+  right: 0;
+}
+
+/* Premium card hover */
+.card-premium {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-premium:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 60px rgba(27, 42, 74, 0.08),
+    0 8px 24px rgba(27, 42, 74, 0.04);
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(196, 151, 58, 0.4), rgba(27, 42, 74, 0.2), rgba(196, 151, 58, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Stagger animation helper */
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 80ms; }
+.stagger-3 { animation-delay: 160ms; }
+.stagger-4 { animation-delay: 240ms; }
+.stagger-5 { animation-delay: 320ms; }
+.stagger-6 { animation-delay: 400ms; }
+.stagger-7 { animation-delay: 480ms; }
+.stagger-8 { animation-delay: 560ms; }
+
+/* RTL flip for icons that need directional flipping */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Decorative floating orb */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Pulse animation for WhatsApp FAB */
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.wa-fab {
+  animation: wa-pulse 2.5s ease-in-out infinite;
+}
+
+/* Admin sidebar */
+.admin-sidebar-item {
+  @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200;
+}
+.admin-sidebar-item:hover {
+  @apply bg-surface-container;
+}
+.admin-sidebar-item.active {
+  @apply bg-primary text-on-primary shadow-lg;
+  box-shadow: 0 4px 20px rgba(27, 42, 74, 0.3);
+}
