@@ -18,12 +18,13 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="pt-24 pb-20 px-5 md:px-10 max-w-[1440px] mx-auto">
+    <main className="pt-28 md:pt-40 pb-20 px-5 md:px-10 max-w-[1440px] mx-auto">
       {/* Hero Section */}
       <section className="relative mb-20 overflow-hidden">
         {/* Decorative orbs */}
         <div className="orb w-[500px] h-[500px] bg-gold -top-40 -end-40" />
         <div className="orb w-[300px] h-[300px] bg-primary -bottom-20 -start-20" />
+        <div className="orb w-[150px] h-[150px] bg-gold/40 top-1/3 end-1/3 animate-float" />
 
         <div className="relative z-10 py-12 md:py-20">
           <div className="max-w-3xl">
@@ -82,7 +83,7 @@ export default function HomePage() {
               </div>
 
               {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
 
               {/* Content */}
               <div className={`absolute bottom-0 start-0 p-6 w-full ${idx === 0 ? 'p-8' : ''}`}>

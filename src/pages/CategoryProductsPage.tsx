@@ -25,7 +25,7 @@ export default function CategoryProductsPage() {
   }, [id]);
 
   return (
-    <main className="pt-24 pb-20 px-5 md:px-10 max-w-[1440px] mx-auto">
+    <main className="pt-28 md:pt-40 pb-20 px-5 md:px-10 max-w-[1440px] mx-auto">
       {/* Header */}
       <header className="mb-16 relative">
         {/* Decorative orb */}
@@ -88,7 +88,7 @@ export default function CategoryProductsPage() {
                     onError={(e) => { e.currentTarget.style.opacity = '0'; }}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 z-10 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
+                    className="absolute inset-0 z-10 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-105"
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 z-20 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

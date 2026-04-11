@@ -16,13 +16,13 @@ export default function NavBar() {
         {/* Gold accent line at very top */}
         <div className="h-[2px] w-full bg-gold-gradient" />
 
-        <nav className="flex justify-between items-center h-24 md:h-36 px-5 md:px-12 w-full max-w-[1440px] mx-auto">
+        <nav className="flex justify-between items-center h-28 md:h-40 px-5 md:px-12 w-full max-w-[1440px] mx-auto">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
             <img 
               src="/logo.jpg" 
               alt={lang === 'ar' ? 'قصر الرسام' : 'El Rasam Palace'} 
-              className="h-20 md:h-28 w-auto object-contain scale-100 group-hover:scale-105 group-hover:-translate-y-1 drop-shadow-[0_4px_15px_rgba(212,175,55,0.2)] group-hover:drop-shadow-[0_12px_30px_rgba(212,175,55,0.6)] group-hover:brightness-110 transition-all duration-500"
+              className="h-24 md:h-36 w-auto object-contain scale-100 group-hover:scale-105 group-hover:-translate-y-1 drop-shadow-[0_4px_15px_rgba(212,175,55,0.2)] group-hover:drop-shadow-[0_12px_30px_rgba(212,175,55,0.6)] group-hover:brightness-110 transition-all duration-500"
             />
           </Link>
 
@@ -100,7 +100,7 @@ export default function NavBar() {
       {mobileMenuOpen && !isAdmin && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className="absolute top-[98px] inset-x-0 bg-background/95 backdrop-blur-xl border-b border-outline-variant/20 p-6 animate-fade-in-up shadow-2xl">
+          <div className="absolute top-[114px] inset-x-0 bg-background/95 backdrop-blur-xl border-b border-outline-variant/20 p-6 animate-fade-in-up shadow-2xl">
             <div className="flex flex-col gap-2">
               <Link
                 to="/"

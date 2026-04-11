@@ -121,6 +121,18 @@ export default {
         'spin-slow': {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
+        },
+        'shimmer-gold': {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        'glow-pulse-gold': {
+          '0%, 100%': { boxShadow: '0 0 15px rgba(196,151,58,0.15)' },
+          '50%': { boxShadow: '0 0 30px rgba(196,151,58,0.35)' },
+        },
+        'subtle-bounce': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-3px)' },
         }
       },
       animation: {
@@ -132,12 +144,23 @@ export default {
         float: 'float 3s ease-in-out infinite',
         pulse_glow: 'pulse_glow 2s ease-in-out infinite',
         'spin-slow': 'spin-slow 20s linear infinite',
+        'shimmer-gold': 'shimmer-gold 3s linear infinite',
+        'glow-pulse-gold': 'glow-pulse-gold 2.5s ease-in-out infinite',
+        'subtle-bounce': 'subtle-bounce 2s ease-in-out infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'hero-gradient': 'linear-gradient(135deg, #1B2A4A 0%, #2A3F6B 50%, #1B2A4A 100%)',
         'gold-gradient': 'linear-gradient(135deg, #C4973A 0%, #F5E4B0 50%, #C4973A 100%)',
         'card-gradient': 'linear-gradient(180deg, transparent 0%, rgba(27,42,74,0.8) 100%)',
+      },
+      boxShadow: {
+        'premium': '0 8px 32px rgba(27,42,74,0.08), 0 2px 8px rgba(27,42,74,0.04)',
+        'premium-hover': '0 20px 60px rgba(27,42,74,0.12), 0 8px 24px rgba(27,42,74,0.06)',
+        'gold-glow': '0 4px 20px rgba(196,151,58,0.15)',
+        'gold-glow-lg': '0 8px 40px rgba(196,151,58,0.25)',
+        'admin-card': '0 1px 3px rgba(27,42,74,0.06), 0 4px 16px rgba(27,42,74,0.04)',
+        'admin-card-hover': '0 4px 12px rgba(27,42,74,0.1), 0 8px 32px rgba(27,42,74,0.06)',
       }
     },
   },

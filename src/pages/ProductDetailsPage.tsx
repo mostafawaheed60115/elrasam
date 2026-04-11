@@ -51,7 +51,7 @@ export default function ProductDetailsPage() {
   ].filter(img => img.image_url);
 
   return (
-    <main className="pt-24 pb-20 px-5 md:px-10 max-w-7xl mx-auto">
+    <main className="pt-28 md:pt-40 pb-20 px-5 md:px-10 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16">
 
         {/* Left: Product Images */}
@@ -90,8 +90,8 @@ export default function ProductDetailsPage() {
                   onClick={() => setSelectedImage(img.image_url)}
                   className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden transition-all duration-300 border-2 ${
                     selectedImage === img.image_url
-                      ? 'border-gold shadow-lg shadow-gold/20 ring-2 ring-gold/30'
-                      : 'border-transparent hover:border-outline-variant/50 opacity-60 hover:opacity-100'
+                      ? 'border-gold shadow-lg shadow-gold/20 ring-2 ring-gold/30 scale-105'
+                      : 'border-transparent hover:border-outline-variant/50 opacity-60 hover:opacity-100 hover:scale-105'
                   }`}
                 >
                   <img
@@ -158,7 +158,7 @@ export default function ProductDetailsPage() {
                 href="https://wa.me/201004212424"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-full py-5 bg-[#25D366] hover:bg-[#1ebd59] text-white rounded-2xl font-bold tracking-widest text-sm uppercase flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl shadow-[#25D366]/20 hover:shadow-[#25D366]/40 hover:-translate-y-1 overflow-hidden"
+                className="wa-fab group relative w-full py-5 bg-[#25D366] hover:bg-[#1ebd59] text-white rounded-2xl font-bold tracking-widest text-sm uppercase flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl shadow-[#25D366]/20 hover:shadow-[#25D366]/40 hover:-translate-y-1 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out" />
                 <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current relative z-10 transition-transform group-hover:scale-110">

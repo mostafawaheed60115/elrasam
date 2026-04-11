@@ -8,6 +8,7 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { t, lang } = useLang();
 
@@ -39,26 +40,45 @@ export default function AdminLogin() {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-surface-container-low to-background" />
       <div className="orb w-[600px] h-[600px] bg-gold -top-40 -end-40" />
       <div className="orb w-[400px] h-[400px] bg-primary -bottom-32 -start-32" />
+      <div className="orb w-[200px] h-[200px] bg-gold/50 top-1/2 start-1/4 animate-float" />
 
       {/* Decorative grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, #1B2A4A 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
+      {/* Decorative lines */}
+      <div className="absolute top-20 start-10 w-32 h-px bg-gradient-to-r from-gold/30 to-transparent" />
+      <div className="absolute bottom-20 end-10 w-32 h-px bg-gradient-to-l from-gold/30 to-transparent" />
+
       <div className="relative z-10 w-full max-w-md animate-fade-in-up">
         {/* Logo */}
         <div className="flex flex-col items-center mb-10">
-          <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-2xl shadow-primary/30 mb-5">
-            <span className="text-gold text-2xl font-black">ق</span>
+          <div className="relative mb-5">
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary-dim flex items-center justify-center shadow-2xl shadow-primary/30 animate-glow-pulse-gold">
+              <span className="text-gold text-3xl font-black">ق</span>
+            </div>
+            {/* Gold corner accents */}
+            <div className="absolute -top-1 -start-1 w-3 h-3 border-t-2 border-s-2 border-gold/40 rounded-tl-lg" />
+            <div className="absolute -top-1 -end-1 w-3 h-3 border-t-2 border-e-2 border-gold/40 rounded-tr-lg" />
+            <div className="absolute -bottom-1 -start-1 w-3 h-3 border-b-2 border-s-2 border-gold/40 rounded-bl-lg" />
+            <div className="absolute -bottom-1 -end-1 w-3 h-3 border-b-2 border-e-2 border-gold/40 rounded-br-lg" />
           </div>
-          <h2 className="text-xl font-extrabold text-primary">
+          <h2 className="text-2xl font-extrabold text-primary">
             {lang === 'ar' ? 'قصر الرسام' : 'El Rasam Palace'}
           </h2>
-          <p className="text-xs text-on-surface-variant mt-1 tracking-widest uppercase font-medium">
+          <p className="text-xs text-on-surface-variant mt-1.5 tracking-widest uppercase font-medium">
             {lang === 'ar' ? 'El Rasam Palace' : 'قصر الرسام'}
           </p>
+          <div className="flex items-center gap-3 mt-4">
+            <div className="h-[1px] w-8 bg-gold-gradient rounded-full" />
+            <span className="text-[10px] text-gold-dark font-bold uppercase tracking-[0.2em]">
+              {lang === 'ar' ? 'لوحة التحكم' : 'Admin Panel'}
+            </span>
+            <div className="h-[1px] w-8 bg-gold-gradient rounded-full" />
+          </div>
         </div>
 
         {/* Login Card */}
-        <div className="bg-white/80 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl shadow-primary/5 border border-outline-variant/15 gradient-border">
+        <div className="bg-white/80 backdrop-blur-2xl p-8 md:p-10 rounded-3xl shadow-2xl shadow-primary/5 border border-outline-variant/15 gradient-border">
           <h1 className="text-2xl font-bold mb-2 text-primary">{t('admin.login_title')}</h1>
           <p className="text-sm text-on-surface-variant mb-8">{t('admin.subtitle')}</p>
 
@@ -72,28 +92,35 @@ export default function AdminLogin() {
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
               <label className="block text-sm font-semibold text-on-surface mb-2">{t('admin.username')}</label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute start-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[20px]">person</span>
+              <div className="relative group">
+                <span className="material-symbols-outlined absolute start-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[20px] group-focus-within:text-gold transition-colors duration-200">person</span>
                 <input
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full rounded-xl border-outline-variant/20 bg-surface-container-low ps-10 pe-4 py-3 focus:border-gold focus:ring-gold/30 text-sm transition-all"
+                  className="w-full rounded-xl border-outline-variant/20 bg-surface-container-low ps-10 pe-4 py-3.5 focus:border-gold focus:ring-gold/30 text-sm transition-all hover:border-outline-variant/40"
                   required
                 />
               </div>
             </div>
             <div>
               <label className="block text-sm font-semibold text-on-surface mb-2">{t('admin.password')}</label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute start-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[20px]">lock</span>
+              <div className="relative group">
+                <span className="material-symbols-outlined absolute start-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[20px] group-focus-within:text-gold transition-colors duration-200">lock</span>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-xl border-outline-variant/20 bg-surface-container-low ps-10 pe-4 py-3 focus:border-gold focus:ring-gold/30 text-sm transition-all"
+                  className="w-full rounded-xl border-outline-variant/20 bg-surface-container-low ps-10 pe-12 py-3.5 focus:border-gold focus:ring-gold/30 text-sm transition-all hover:border-outline-variant/40"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute end-3 top-1/2 -translate-y-1/2 text-on-surface-variant/40 hover:text-on-surface-variant transition-colors p-1"
+                >
+                  <span className="material-symbols-outlined text-[18px]">{showPassword ? 'visibility_off' : 'visibility'}</span>
+                </button>
               </div>
             </div>
             <button
@@ -111,6 +138,15 @@ export default function AdminLogin() {
               )}
             </button>
           </form>
+
+          {/* Decorative bottom */}
+          <div className="flex items-center justify-center gap-2 mt-8 pt-6 border-t border-outline-variant/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-gold/40" />
+            <span className="text-[10px] text-on-surface-variant/50 font-medium tracking-wider uppercase">
+              {lang === 'ar' ? 'محمي بالتشفير' : 'Secure Access'}
+            </span>
+            <div className="w-1.5 h-1.5 rounded-full bg-gold/40" />
+          </div>
         </div>
       </div>
     </main>
