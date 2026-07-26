@@ -14,6 +14,18 @@
     overflow-x: hidden;
   }
 
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    scroll-margin-block: 7rem;
+  }
+
   /* Premium selection color */
   ::selection {
     background: rgba(196, 151, 58, 0.25);
@@ -166,6 +178,27 @@
 
 .wa-fab {
   animation: wa-pulse 2.5s ease-in-out infinite;
+}
+
+@media (hover: none) {
+  .card-premium:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Admin sidebar */

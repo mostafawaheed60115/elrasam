@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../utils/supabase';
-import { useLang } from '../contexts/LanguageContext';
+import { useLang } from '../hooks/useLang';
+
+interface Product {
+  id: string;
+  name: string;
+  description: string | null;
+  main_image_url: string | null;
+  price: number | string;
+}
 
 export default function CategoryProductsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [loaded, setLoaded] = useState(false);
   const { t } = useLang();
@@ -25,9 +33,9 @@ export default function CategoryProductsPage() {
   }, [id]);
 
   return (
-    <main className="pt-28 md:pt-40 pb-20 px-5 md:px-10 max-w-[1440px] mx-auto">
+    <main className="pt-28 lg:pt-36 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-10 max-w-[1440px] mx-auto">
       {/* Header */}
-      <header className="mb-16 relative">
+      <header className="mb-10 sm:mb-14 relative">
         {/* Decorative orb */}
         <div className="orb w-[400px] h-[400px] bg-gold -top-32 end-0" />
 
@@ -42,15 +50,7 @@ export default function CategoryProductsPage() {
             {t('cat.back')}
           </button>
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            <span className="text-xs font-bold tracking-[0.15em] uppercase text-gold-dark">
-              {t('cat.badge')}
-            </span>
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary leading-[1.1] mb-6 max-w-3xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-primary leading-[1.1] mb-6 max-w-3xl">
             {categoryName}
           </h1>
 
@@ -64,7 +64,7 @@ export default function CategoryProductsPage() {
       </header>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
         {loaded && products.length > 0 ? (
           products.map((product, idx) => (
             <Link
@@ -72,7 +72,7 @@ export default function CategoryProductsPage() {
               key={product.id}
               className={`group card-premium opacity-0 animate-fade-in-up stagger-${Math.min(idx + 1, 8)} ${
                 idx === 0 ? 'sm:col-span-2' : ''
-              }`}
+              } focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gold/35 rounded-2xl`}
               style={{ animationFillMode: 'forwards' }}
             >
               <div className="bg-surface-container-lowest rounded-2xl overflow-hidden ghost-border-gold h-full flex flex-col">
@@ -88,6 +88,7 @@ export default function CategoryProductsPage() {
                     onError={(e) => { e.currentTarget.style.opacity = '0'; }}
                     loading="lazy"
                     decoding="async"
+                    sizes={idx === 0 ? '(min-width: 640px) 66vw, 100vw' : '(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
                     className="absolute inset-0 z-10 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-105"
                   />
                   {/* Overlay on hover */}

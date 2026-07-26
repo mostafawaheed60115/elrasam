@@ -1,12 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../utils/supabase';
-import { useLang } from '../contexts/LanguageContext';
+import { useLang } from '../hooks/useLang';
+
+interface ProductImage {
+  id: string;
+  image_url: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string | null;
+  main_image_url: string | null;
+  price: number | string;
+  categories?: { name: string } | null;
+  additionalImages: ProductImage[];
+}
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const { t } = useLang();
@@ -45,21 +60,22 @@ export default function ProductDetailsPage() {
     );
   }
 
-  const allImages = [
-    { id: 'main', image_url: product.main_image_url },
-    ...(product.additionalImages || [])
-  ].filter(img => img.image_url);
+  const allImages: ProductImage[] = [
+    ...(product.main_image_url ? [{ id: 'main', image_url: product.main_image_url }] : []),
+    ...product.additionalImages,
+  ];
 
   return (
-    <main className="pt-28 md:pt-40 pb-20 px-5 md:px-10 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16">
+    <main className="pt-28 lg:pt-36 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
         {/* Left: Product Images */}
-        <div className="md:col-span-7 flex flex-col gap-5">
+        <div className="lg:col-span-7 flex flex-col gap-5">
           {/* Main Image */}
           <button
             onClick={() => setExpandedImage(selectedImage)}
-            className="w-full block relative rounded-3xl overflow-hidden aspect-[4/5] md:aspect-[3/4] group cursor-zoom-in text-left bg-surface-container-low gradient-border"
+            aria-label={t('product.image_zoom')}
+            className="w-full block relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[3/4] group cursor-zoom-in text-left bg-surface-container-low gradient-border focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gold/35"
           >
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-on-surface-variant/30">
               <span className="material-symbols-outlined text-5xl mb-2">image</span>
@@ -84,7 +100,7 @@ export default function ProductDetailsPage() {
           {/* Thumbnail Strip */}
           {allImages.length > 1 && (
             <div className="flex gap-3 overflow-x-auto pb-2">
-              {allImages.map((img: any) => (
+              {allImages.map((img) => (
                 <button
                   key={img.id}
                   onClick={() => setSelectedImage(img.image_url)}
@@ -107,8 +123,8 @@ export default function ProductDetailsPage() {
         </div>
 
         {/* Right: Details */}
-        <div className="md:col-span-5 flex flex-col justify-center">
-          <div className="sticky top-28">
+        <div className="lg:col-span-5 flex flex-col justify-center">
+          <div className="lg:sticky lg:top-28">
             {/* Back button */}
             <button
               onClick={() => navigate(-1)}
@@ -129,7 +145,7 @@ export default function ProductDetailsPage() {
             )}
 
             {/* Product Name */}
-            <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-primary leading-[1.15] mb-8">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-primary leading-[1.15] mb-8">
               {product.name}
             </h1>
 
@@ -176,6 +192,9 @@ export default function ProductDetailsPage() {
         <div
           className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-12 cursor-zoom-out animate-fade-in"
           onClick={() => setExpandedImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('product.image_preview')}
         >
           <img
             src={expandedImage}
@@ -184,6 +203,7 @@ export default function ProductDetailsPage() {
           />
           <button
             className="absolute top-6 end-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 backdrop-blur-md transition-colors w-12 h-12 flex items-center justify-center border border-white/20"
+            aria-label={t('product.close_preview')}
             onClick={(e) => { e.stopPropagation(); setExpandedImage(null); }}
           >
             <span className="material-symbols-outlined text-[24px]">close</span>
@@ -191,7 +211,7 @@ export default function ProductDetailsPage() {
           {/* Thumbnail navigation in lightbox */}
           {allImages.length > 1 && (
             <div className="absolute bottom-6 inset-x-6 flex justify-center gap-2">
-              {allImages.map((img: any) => (
+              {allImages.map((img) => (
                 <button
                   key={img.id}
                   onClick={(e) => { e.stopPropagation(); setExpandedImage(img.image_url); }}

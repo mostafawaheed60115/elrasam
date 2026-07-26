@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../utils/supabase';
-import { useLang } from '../../contexts/LanguageContext';
+import { useLang } from '../../hooks/useLang';
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');

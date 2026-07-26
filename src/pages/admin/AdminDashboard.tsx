@@ -1,7 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../utils/supabase';
-import { useLang } from '../../contexts/LanguageContext';
+import { useLang } from '../../hooks/useLang';
+
+interface Category {
+  id: number;
+  name: string;
+  image_url: string;
+}
+
+interface Product {
+  id: number;
+  name: string;
+  description: string | null;
+  price: number;
+  category_id: number;
+  main_image_url: string;
+}
+
+const getErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : String(error);
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -9,8 +27,8 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'products' | 'categories'>('products');
 
   // Data State
-  const [categories, setCategories] = useState<any[]>([]);
-  const [products, setProducts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   // UI State
   const [loading, setLoading] = useState(false);
@@ -35,14 +53,7 @@ export default function AdminDashboard() {
   const [categoryForm, setCategoryForm] = useState({ id: null as number | null, name: '' });
   const [categoryImage, setCategoryImage] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (sessionStorage.getItem('adminAuth') !== 'true') {
-      navigate('/admin');
-    }
-    fetchData();
-  }, [navigate]);
-
-  async function fetchData() {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     const [catRes, prodRes] = await Promise.all([
       supabase.schema('public').from('categories').select('*').order('created_at', { ascending: false }),
@@ -50,13 +61,21 @@ export default function AdminDashboard() {
     ]);
     if (catRes.data) {
       setCategories(catRes.data);
-      if (catRes.data.length > 0 && !productForm.category_id) {
-        setProductForm(prev => ({ ...prev, category_id: catRes.data[0].id.toString() }));
-      }
+      setProductForm((previous) => ({
+        ...previous,
+        category_id: previous.category_id || catRes.data[0]?.id.toString() || '',
+      }));
     }
     if (prodRes.data) setProducts(prodRes.data);
     setLoading(false);
-  }
+  }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('adminAuth') !== 'true') {
+      navigate('/admin');
+    }
+    fetchData();
+  }, [fetchData, navigate]);
 
   const showMessage = (text: string, type: 'success' | 'error' = 'success') => {
     setMessage({ text, type });
@@ -79,7 +98,7 @@ export default function AdminDashboard() {
       }
 
       if (categoryForm.id) {
-        const updates: any = { name: categoryForm.name };
+        const updates: { name: string; image_url?: string } = { name: categoryForm.name };
         if (imageUrl) updates.image_url = imageUrl;
         const { error } = await supabase.schema('public').from('categories').update(updates).eq('id', categoryForm.id);
         if (error) throw error;
@@ -95,8 +114,8 @@ export default function AdminDashboard() {
       setCategoryImage(null);
       setShowCategoryForm(false);
       fetchData();
-    } catch (err: any) {
-      showMessage(err.message, 'error');
+    } catch (error: unknown) {
+      showMessage(getErrorMessage(error), 'error');
     } finally {
       setLoading(false);
     }
@@ -128,7 +147,13 @@ export default function AdminDashboard() {
       }
 
       if (productForm.id) {
-        const updates: any = {
+        const updates: {
+          name: string;
+          description: string;
+          price: number;
+          category_id: number;
+          main_image_url?: string;
+        } = {
           name: productForm.name,
           description: productForm.description,
           price: parseFloat(productForm.price),
@@ -175,8 +200,8 @@ export default function AdminDashboard() {
       setShowProductForm(false);
       fetchData();
 
-    } catch (err: any) {
-      showMessage(`${err.message}`, 'error');
+    } catch (error: unknown) {
+      showMessage(getErrorMessage(error), 'error');
     } finally {
       setLoading(false);
     }

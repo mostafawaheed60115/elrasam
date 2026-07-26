@@ -39,6 +39,9 @@ export const translations: Record<string, Record<Lang, string>> = {
   'product.image_unavailable': { en: 'Image Unavailable', ar: 'الصورة غير متاحة' },
   'product.currency': { en: 'EGP', ar: 'ج.م' },
   'product.loading': { en: 'Loading...', ar: 'جاري التحميل...' },
+  'product.image_zoom': { en: 'Open enlarged product image', ar: 'فتح صورة المنتج بحجم أكبر' },
+  'product.image_preview': { en: 'Product image preview', ar: 'معاينة صورة المنتج' },
+  'product.close_preview': { en: 'Close image preview', ar: 'إغلاق معاينة الصورة' },
 
   // Footer
   'footer.developed_by': { en: 'Developed by', ar: 'تم التطوير بواسطة' },
